@@ -1,12 +1,12 @@
-package personal.tasktracker.controller;
+package com.joemac96.tasktracker.controller;
 
+import com.joemac96.tasktracker.dto.CreateTaskRequest;
+import com.joemac96.tasktracker.dto.TaskDto;
+import com.joemac96.tasktracker.dto.UpdateTaskRequest;
+import com.joemac96.tasktracker.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import personal.tasktracker.dto.CreateTaskRequest;
-import personal.tasktracker.dto.TaskDto;
-import personal.tasktracker.dto.UpdateTaskRequest;
-import personal.tasktracker.service.TaskService;
 
 import java.util.List;
 import java.util.UUID;
@@ -36,7 +36,7 @@ public class TaskController {
     }
 
     @PutMapping("{id}")
-    public TaskDto createTask(@PathVariable UUID id,
+    public TaskDto updateTask(@PathVariable UUID id,
                               @RequestBody @Valid UpdateTaskRequest request) {
         return taskService.update(id, request);
     }
@@ -45,5 +45,10 @@ public class TaskController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void DeleteTask(@PathVariable UUID id) {
         taskService.delete(id);
+    }
+
+    @PutMapping("{id}/complete")
+    public TaskDto updateTask(@PathVariable UUID id) {
+        return taskService.complete(id);
     }
 }

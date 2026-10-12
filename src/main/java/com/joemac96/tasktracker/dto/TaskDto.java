@@ -1,4 +1,4 @@
-package personal.tasktracker.dto;
+package com.joemac96.tasktracker.dto;
 
 import java.time.Instant;
 import java.util.UUID;

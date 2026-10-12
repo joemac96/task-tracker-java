@@ -1,4 +1,4 @@
-package personal.tasktracker.common.config;
+package com.joemac96.tasktracker.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

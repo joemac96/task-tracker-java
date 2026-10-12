@@ -1,4 +1,4 @@
-package personal.tasktracker.dto;
+package com.joemac96.tasktracker.dto;
 
 public enum TaskStatus {
     PENDING,

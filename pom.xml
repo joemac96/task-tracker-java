@@ -9,7 +9,7 @@
         <version>4.1.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.personal</groupId>
+    <groupId>com.joemac96</groupId>
     <artifactId>task-tracker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>task-tracker</name>

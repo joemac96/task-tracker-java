@@ -1,4 +1,4 @@
-package personal.tasktracker;
+package com.joemac96.tasktracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

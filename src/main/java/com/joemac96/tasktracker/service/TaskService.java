@@ -1,13 +1,15 @@
-package personal.tasktracker.service;
+package com.joemac96.tasktracker.service;
 
+import com.joemac96.tasktracker.dto.CreateTaskRequest;
+import com.joemac96.tasktracker.dto.TaskDto;
+import com.joemac96.tasktracker.dto.UpdateTaskRequest;
+import com.joemac96.tasktracker.entity.Task;
+import com.joemac96.tasktracker.mapper.TaskMapper;
+import com.joemac96.tasktracker.repository.TaskRepository;
 import org.springframework.stereotype.Service;
-import personal.tasktracker.dto.CreateTaskRequest;
-import personal.tasktracker.dto.TaskDto;
-import personal.tasktracker.dto.UpdateTaskRequest;
-import personal.tasktracker.entity.Task;
-import personal.tasktracker.mapper.TaskMapper;
-import personal.tasktracker.repository.TaskRepository;
 
+import java.time.Clock;
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,10 +17,12 @@ import java.util.UUID;
 public class TaskService {
     private final TaskRepository taskRepository;
     private final TaskMapper taskMapper;
+    private final Clock clock;
 
-    public TaskService(TaskRepository taskRepository, TaskMapper taskMapper) {
+    public TaskService(TaskRepository taskRepository, TaskMapper taskMapper, Clock clock) {
         this.taskRepository = taskRepository;
         this.taskMapper = taskMapper;
+        this.clock = clock;
     }
 
     public List<TaskDto> getAll() {
@@ -51,5 +55,13 @@ public class TaskService {
 
     public void delete(UUID id) {
         taskRepository.delete(id);
+    }
+
+    public TaskDto complete(UUID id) {
+        Task existing = taskRepository.get(id);
+        existing.setCompletedAt(Instant.now(clock));
+
+        Task updated = taskRepository.update(id, existing);
+        return taskMapper.toDto(updated);
     }
 }

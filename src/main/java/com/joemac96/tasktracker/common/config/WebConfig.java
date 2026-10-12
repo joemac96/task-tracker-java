@@ -1,4 +1,4 @@
-package personal.tasktracker.common.config;
+package com.joemac96.tasktracker.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;

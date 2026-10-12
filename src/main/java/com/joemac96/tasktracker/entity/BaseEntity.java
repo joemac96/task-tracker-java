@@ -1,4 +1,4 @@
-package personal.tasktracker.entity;
+package com.joemac96.tasktracker.entity;
 
 import java.time.Instant;
 import java.util.UUID;

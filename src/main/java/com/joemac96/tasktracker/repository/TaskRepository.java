@@ -1,7 +1,7 @@
-package personal.tasktracker.repository;
+package com.joemac96.tasktracker.repository;
 
+import com.joemac96.tasktracker.entity.Task;
 import org.springframework.stereotype.Repository;
-import personal.tasktracker.entity.Task;
 
 import java.util.*;
 
