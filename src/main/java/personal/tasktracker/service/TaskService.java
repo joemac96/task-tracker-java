@@ -1,12 +1,12 @@
 package personal.tasktracker.service;
 
+import org.springframework.stereotype.Service;
 import personal.tasktracker.dto.CreateTaskRequest;
 import personal.tasktracker.dto.TaskDto;
 import personal.tasktracker.dto.UpdateTaskRequest;
 import personal.tasktracker.entity.Task;
 import personal.tasktracker.mapper.TaskMapper;
 import personal.tasktracker.repository.TaskRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
@@ -40,15 +40,15 @@ public class TaskService {
 
     public TaskDto update(UUID id, UpdateTaskRequest request) {
         Task existing = taskRepository.get(id);
-        
+
         existing.setTitle(request.title());
         existing.setDescription(request.description());
         existing.setDueAt(request.dueAt());
-        
+
         Task updated = taskRepository.update(id, existing);
         return taskMapper.toDto(updated);
     }
-    
+
     public void delete(UUID id) {
         taskRepository.delete(id);
     }

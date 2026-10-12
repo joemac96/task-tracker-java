@@ -1,7 +1,7 @@
 package personal.tasktracker.repository;
 
-import personal.tasktracker.entity.Task;
 import org.springframework.stereotype.Repository;
+import personal.tasktracker.entity.Task;
 
 import java.util.*;
 

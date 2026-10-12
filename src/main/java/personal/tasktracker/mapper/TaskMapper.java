@@ -1,10 +1,10 @@
 package personal.tasktracker.mapper;
 
+import org.springframework.stereotype.Component;
 import personal.tasktracker.dto.CreateTaskRequest;
 import personal.tasktracker.dto.TaskDto;
 import personal.tasktracker.dto.TaskStatus;
 import personal.tasktracker.entity.Task;
-import org.springframework.stereotype.Component;
 
 import java.time.Clock;
 import java.time.Instant;
