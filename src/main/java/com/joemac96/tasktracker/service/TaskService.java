@@ -1,5 +1,6 @@
 package com.joemac96.tasktracker.service;
 
+import com.joemac96.tasktracker.common.exception.NotFoundException;
 import com.joemac96.tasktracker.dto.CreateTaskRequest;
 import com.joemac96.tasktracker.dto.TaskDto;
 import com.joemac96.tasktracker.dto.UpdateTaskRequest;
@@ -33,8 +34,12 @@ public class TaskService {
     }
 
     public TaskDto getById(UUID id) {
-        Task task = taskRepository.get(id);
-        return taskMapper.toDto(task);
+        Task existing = taskRepository.get(id);
+        if (existing == null) {
+            throw new NotFoundException(Task.class, id);
+        }
+
+        return taskMapper.toDto(existing);
     }
 
     public TaskDto create(CreateTaskRequest request) {
@@ -44,6 +49,9 @@ public class TaskService {
 
     public TaskDto update(UUID id, UpdateTaskRequest request) {
         Task existing = taskRepository.get(id);
+        if (existing == null) {
+            throw new NotFoundException(Task.class, id);
+        }
 
         existing.setTitle(request.title());
         existing.setDescription(request.description());
@@ -59,6 +67,14 @@ public class TaskService {
 
     public TaskDto complete(UUID id) {
         Task existing = taskRepository.get(id);
+        if (existing == null) {
+            throw new NotFoundException(Task.class, id);
+        }
+
+        if (existing.getCompletedAt() != null) {
+            return taskMapper.toDto(existing);
+        }
+
         existing.setCompletedAt(Instant.now(clock));
 
         Task updated = taskRepository.update(id, existing);
