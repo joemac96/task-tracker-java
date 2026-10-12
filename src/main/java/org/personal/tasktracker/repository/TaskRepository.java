@@ -9,24 +9,25 @@ import java.util.*;
 public class TaskRepository {
     private final Map<UUID, Task> tasks = new HashMap<>();
 
-    public Task Get(UUID id) {
+    public Task get(UUID id) {
         return tasks.get(id);
     }
 
-    public Task Create(Task task) {
+    public Task create(Task task) {
         tasks.put(task.getId(), task);
         return task;
     }
 
-    public Task Update(UUID id, Task task) {
-        return tasks.put(id, task);
+    public Task update(UUID id, Task task) {
+        tasks.put(task.getId(), task);
+        return task;
     }
 
-    public Task Delete(UUID id) {
+    public Task delete(UUID id) {
         return tasks.remove(id);
     }
 
-    public List<Task> GetAll() {
+    public List<Task> getAll() {
         return new ArrayList<>(tasks.values());
     }
 }

@@ -3,7 +3,9 @@ package org.personal.tasktracker.controller;
 import jakarta.validation.Valid;
 import org.personal.tasktracker.dto.CreateTaskRequest;
 import org.personal.tasktracker.dto.TaskDto;
+import org.personal.tasktracker.dto.UpdateTaskRequest;
 import org.personal.tasktracker.service.TaskService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,5 +33,16 @@ public class TaskController {
     @PostMapping
     public TaskDto createTask(@RequestBody @Valid CreateTaskRequest request) {
         return taskService.create(request);
+    }
+
+    @PutMapping("{id}")
+    public TaskDto createTask(@PathVariable UUID id, @RequestBody @Valid UpdateTaskRequest request) {
+        return taskService.update(id, request);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void DeleteTask(@PathVariable UUID id) {
+        taskService.delete(id);
     }
 }

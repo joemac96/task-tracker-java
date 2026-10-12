@@ -2,6 +2,7 @@ package org.personal.tasktracker.service;
 
 import org.personal.tasktracker.dto.CreateTaskRequest;
 import org.personal.tasktracker.dto.TaskDto;
+import org.personal.tasktracker.dto.UpdateTaskRequest;
 import org.personal.tasktracker.entity.Task;
 import org.personal.tasktracker.mapper.TaskMapper;
 import org.personal.tasktracker.repository.TaskRepository;
@@ -21,19 +22,34 @@ public class TaskService {
     }
 
     public List<TaskDto> getAll() {
-        return taskRepository.GetAll()
+        return taskRepository.getAll()
                              .stream()
                              .map(taskMapper::toDto)
                              .toList();
     }
 
     public TaskDto getById(UUID id) {
-        Task task = taskRepository.Get(id);
+        Task task = taskRepository.get(id);
         return taskMapper.toDto(task);
     }
 
     public TaskDto create(CreateTaskRequest request) {
-        Task created = taskRepository.Create(taskMapper.toEntity(request));
+        Task created = taskRepository.create(taskMapper.toEntity(request));
         return taskMapper.toDto(created);
+    }
+
+    public TaskDto update(UUID id, UpdateTaskRequest request) {
+        Task existing = taskRepository.get(id);
+        
+        existing.setTitle(request.title());
+        existing.setDescription(request.description());
+        existing.setDueAt(request.dueAt());
+        
+        Task updated = taskRepository.update(id, existing);
+        return taskMapper.toDto(updated);
+    }
+    
+    public void delete(UUID id) {
+        taskRepository.delete(id);
     }
 }
