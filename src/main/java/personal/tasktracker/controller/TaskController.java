@@ -1,10 +1,10 @@
-package org.personal.tasktracker.controller;
+package personal.tasktracker.controller;
 
 import jakarta.validation.Valid;
-import org.personal.tasktracker.dto.CreateTaskRequest;
-import org.personal.tasktracker.dto.TaskDto;
-import org.personal.tasktracker.dto.UpdateTaskRequest;
-import org.personal.tasktracker.service.TaskService;
+import personal.tasktracker.dto.CreateTaskRequest;
+import personal.tasktracker.dto.TaskDto;
+import personal.tasktracker.dto.UpdateTaskRequest;
+import personal.tasktracker.service.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

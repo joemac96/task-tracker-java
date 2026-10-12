@@ -1,11 +1,11 @@
-package org.personal.tasktracker.service;
+package personal.tasktracker.service;
 
-import org.personal.tasktracker.dto.CreateTaskRequest;
-import org.personal.tasktracker.dto.TaskDto;
-import org.personal.tasktracker.dto.UpdateTaskRequest;
-import org.personal.tasktracker.entity.Task;
-import org.personal.tasktracker.mapper.TaskMapper;
-import org.personal.tasktracker.repository.TaskRepository;
+import personal.tasktracker.dto.CreateTaskRequest;
+import personal.tasktracker.dto.TaskDto;
+import personal.tasktracker.dto.UpdateTaskRequest;
+import personal.tasktracker.entity.Task;
+import personal.tasktracker.mapper.TaskMapper;
+import personal.tasktracker.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
