@@ -33,6 +33,6 @@ public class TaskMapper {
     }
 
     public Task toEntity(CreateTaskRequest request) {
-        return new Task(request.title(), request.description(), request.dueAt(), "");
+        return new Task(request.title(), request.description(), request.dueAt());
     }
 }

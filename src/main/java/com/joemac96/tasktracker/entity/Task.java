@@ -1,15 +1,23 @@
 package com.joemac96.tasktracker.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.time.Instant;
 
+@Entity
+@Table(name = "tasks")
 public class Task extends BaseEntity {
+    @Column(nullable = false)
     private String Title;
     private String Description;
     private Instant DueAt;
     private Instant CompletedAt;
 
-    public Task(String title, String description, Instant dueAt, String createdBy) {
-        super(createdBy);
+    protected Task() { }
+
+    public Task(String title, String description, Instant dueAt) {
         this.Title = title;
         this.Description = description;
         this.DueAt = dueAt;

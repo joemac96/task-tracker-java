@@ -1,46 +1,34 @@
 package com.joemac96.tasktracker.entity;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.Instant;
-import java.util.UUID;
 
+@MappedSuperclass
 public abstract class BaseEntity {
-    private final UUID Id;
-    private final Instant CreatedAt;
-    private final String CreatedBy;
-    private Instant UpdatedAt;
-    private String UpdatedBy;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public BaseEntity(String createdBy) {
-        this.Id = UUID.ofEpochMillis(System.currentTimeMillis());
-        this.CreatedAt = Instant.now();
-        this.CreatedBy = createdBy;
-    }
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Instant createdAt;
 
-    public UUID getId() {
-        return this.Id;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+
+    public Long getId() {
+        return this.id;
     }
 
     public Instant getCreatedAt() {
-        return this.CreatedAt;
+        return this.createdAt;
     }
 
     public Instant getUpdatedAt() {
-        return this.UpdatedAt;
-    }
-
-    public void setUpdatedAt(Instant updatedAt) {
-        this.UpdatedAt = updatedAt;
-    }
-
-    public String getCreatedBy() {
-        return this.CreatedBy;
-    }
-
-    public String getUpdatedBy() {
-        return this.UpdatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.UpdatedBy = updatedBy;
+        return this.updatedAt;
     }
 }

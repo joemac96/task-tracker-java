@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("tasks")
@@ -21,7 +20,7 @@ public class TaskController {
     }
 
     @GetMapping("{id}")
-    public TaskDto GetTaskById(@PathVariable UUID id) {
+    public TaskDto GetTaskById(@PathVariable long id) {
         return taskService.getById(id);
     }
 
@@ -36,19 +35,19 @@ public class TaskController {
     }
 
     @PutMapping("{id}")
-    public TaskDto updateTask(@PathVariable UUID id,
+    public TaskDto updateTask(@PathVariable long id,
                               @RequestBody @Valid UpdateTaskRequest request) {
         return taskService.update(id, request);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void DeleteTask(@PathVariable UUID id) {
+    public void DeleteTask(@PathVariable long id) {
         taskService.delete(id);
     }
 
     @PutMapping("{id}/complete")
-    public TaskDto updateTask(@PathVariable UUID id) {
+    public TaskDto updateTask(@PathVariable long id) {
         return taskService.complete(id);
     }
 }

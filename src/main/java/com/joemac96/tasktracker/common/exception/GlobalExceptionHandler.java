@@ -1,5 +1,6 @@
 package com.joemac96.tasktracker.common.exception;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,8 +13,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    @ExceptionHandler(NotFoundException.class)
-    public ProblemDetail handleNotFound(NotFoundException ex) {
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ProblemDetail handleNotFound(EntityNotFoundException ex) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
